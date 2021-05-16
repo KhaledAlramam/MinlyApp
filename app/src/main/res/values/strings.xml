@@ -3,4 +3,5 @@
     <string name="minly_app">Minly App</string>
     <string name="add_photo">Add Photo</string>
     <string name="please_wait">Please wait..!</string>
+    <string name="no_images_found">No Images Found</string>
 </resources>

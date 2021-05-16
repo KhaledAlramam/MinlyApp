@@ -1,16 +1,14 @@
 package com.sedra.minlyapp.di
 
-import android.app.Application
-import android.content.SharedPreferences
 import com.sedra.minlyapp.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 
@@ -21,9 +19,13 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
-        val link = "http://ui-tv.se:2095/"
+        val link = "https://12cd05b04702.ngrok.io/"
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
         return Retrofit.Builder()
             .baseUrl(link)
+            .client(client)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
