@@ -10,7 +10,7 @@ import retrofit2.http.Part
 interface ApiService {
 
     companion object {
-        const val BASE_URL = "https://12cd05b04702.ngrok.io/"
+        const val BASE_URL = "https://minly-assignment.herokuapp.com/"
     }
 
     @GET("/images")

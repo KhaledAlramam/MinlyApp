@@ -19,12 +19,11 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
-        val link = "https://12cd05b04702.ngrok.io/"
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
         return Retrofit.Builder()
-            .baseUrl(link)
+            .baseUrl(ApiService.BASE_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
